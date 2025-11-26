@@ -1,0 +1,114 @@
+/* ======= GENERAL ======== */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #eef1f5;
+}
+
+/* ======= HEADER ======== */
+.header {
+    background: #0d47a1;
+    padding: 18px;
+    color: white;
+    text-align: center;
+    font-size: 26px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.20);
+}
+
+/* ======= LAYOUT ======== */
+.container {
+    display: flex;
+    height: calc(100vh - 60px);
+}
+
+/* ======= MENÚ LATERAL ======== */
+.menu {
+    width: 230px;
+    background: #ffffff;
+    border-right: 1px solid #dcdcdc;
+    padding-top: 20px;
+    box-shadow: 2px 0 4px rgba(0,0,0,0.05);
+}
+
+.menu a {
+    display: block;
+    padding: 14px 22px;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.menu a:hover {
+    background: #e3f2fd;
+    color: #0d47a1;
+}
+
+/* ======= CONTENIDO ======== */
+.content {
+    flex: 1;
+    padding: 35px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    margin-bottom: 30px;
+    color: #666;
+}
+
+/* ======= CARDS ======== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 25px;
+}
+
+/* TARJETA CLICKEABLE */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #000;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    transition: transform .2s, box-shadow .2s;
+    display: block;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.18);
+    border-color: #0d47a1;
+}
+
+/* TÍTULO DENTRO DE LA TARJETA */
+.card h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #0d47a1;
+    font-weight: 600;
+}
+
+/* NÚMERO GRANDE */
+.card p {
+    font-size: 32px;
+    margin-top: 12px;
+    color: #1e88e5;
+    font-weight: bold;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .menu {
+        display: none;
+    }
+}

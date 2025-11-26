@@ -1,0 +1,96 @@
+CREATE DATABASE bd_gestion_informes_pichigua;
+USE bd_gestion_informes_pichigua;
+
+-- =========================
+-- TABLA: Usuarios
+-- =========================
+CREATE TABLE usuario (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    correo VARCHAR(100) UNIQUE NOT NULL,
+    hash_contraseña VARCHAR(255) NOT NULL,
+    rol ENUM('Administrador','Ingeniero','Supervisor','Consultor') DEFAULT 'Ingeniero',
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- =========================
+-- TABLA: Obras
+-- =========================
+CREATE TABLE obra (
+    id_obra INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(150) NOT NULL,
+    ubicacion VARCHAR(150) NOT NULL,
+    contratista VARCHAR(150),
+    presupuesto_total DECIMAL(14,2),
+    fecha_inicio DATE NOT NULL,
+    fecha_fin_estimada DATE,
+    estado ENUM('Pendiente','En ejecución','Finalizada','Suspendida') DEFAULT 'Pendiente',
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- =========================
+-- TABLA: Informes
+-- =========================
+CREATE TABLE informe (
+    id_informe INT AUTO_INCREMENT PRIMARY KEY,
+    id_obra INT NOT NULL,
+    mes_periodo VARCHAR(20) NOT NULL,
+    fecha_generacion DATE DEFAULT CURRENT_DATE,
+    responsable INT NOT NULL,
+    estado_validacion ENUM('Pendiente','Aprobado','Observado') DEFAULT 'Pendiente',
+    FOREIGN KEY (id_obra) REFERENCES obra(id_obra),
+    FOREIGN KEY (responsable) REFERENCES usuario(id_usuario),
+    INDEX (id_obra),
+    INDEX (mes_periodo)
+);
+
+-- =========================
+-- TABLA: Avance Físico
+-- =========================
+CREATE TABLE avance_fisico (
+    id_avance INT AUTO_INCREMENT PRIMARY KEY,
+    id_informe INT NOT NULL,
+    actividad VARCHAR(150) NOT NULL,
+    porcentaje_avance DECIMAL(5,2) DEFAULT 0,
+    observaciones TEXT,
+    FOREIGN KEY (id_informe) REFERENCES informe(id_informe)
+);
+
+-- =========================
+-- TABLA: Avance Financiero
+-- =========================
+CREATE TABLE avance_financiero (
+    id_finanza INT AUTO_INCREMENT PRIMARY KEY,
+    id_informe INT NOT NULL,
+    partida_presupuestal VARCHAR(100) NOT NULL,
+    monto_ejecutado DECIMAL(14,2) DEFAULT 0,
+    porcentaje_ejecucion DECIMAL(5,2) DEFAULT 0,
+    FOREIGN KEY (id_informe) REFERENCES informe(id_informe)
+);
+
+-- =========================
+-- TABLA: Documentos asociados
+-- =========================
+CREATE TABLE documento (
+    id_documento INT AUTO_INCREMENT PRIMARY KEY,
+    id_informe INT NOT NULL,
+    tipo VARCHAR(50) NOT NULL,
+    ruta_storage VARCHAR(255) NOT NULL,
+    fecha_subida TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    usuario_subida INT NOT NULL,
+    FOREIGN KEY (id_informe) REFERENCES informe(id_informe),
+    FOREIGN KEY (usuario_subida) REFERENCES usuario(id_usuario)
+);
+
+-- =========================
+-- TABLA: Auditoría del sistema
+-- =========================
+CREATE TABLE auditoria (
+    id_evento INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    accion VARCHAR(150) NOT NULL,
+    tabla_afectada VARCHAR(50) NOT NULL,
+    registro_afectado INT,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+);

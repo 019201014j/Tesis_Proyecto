@@ -1,5 +1,5 @@
 <?php
-include "conexion.php";
+include "../Conexion/conexion.php";
 
 $nombre = $_POST['nombre'];
 $ubicacion = $_POST['ubicacion'];
@@ -12,5 +12,5 @@ $estado = $_POST['estado'];
 $conexion->query("INSERT INTO obra(nombre,ubicacion,contratista,presupuesto_total,fecha_inicio,fecha_fin_estimada,estado)
 VALUES('$nombre','$ubicacion','$contratista','$presupuesto','$inicio','$fin','$estado')");
 
-header("Location: obras_lista.php");
+header("Location: ListaObra.php");
 ?>

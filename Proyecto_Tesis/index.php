@@ -7,6 +7,19 @@ $obras = $conexion->query("SELECT COUNT(*) AS total FROM obra")->fetch_assoc()['
 $informes = $conexion->query("SELECT COUNT(*) AS total FROM informe")->fetch_assoc()['total'];
 $avances_fisicos = $conexion->query("SELECT COUNT(*) AS total FROM avance_fisico")->fetch_assoc()['total'];
 $avances_financieros = $conexion->query("SELECT COUNT(*) AS total FROM avance_financiero")->fetch_assoc()['total'];
+$documento = $conexion->query("SELECT COUNT(*) AS total FROM documento")->fetch_assoc()['total'];
+session_start();
+
+if (!isset($_SESSION['id_usuario'])) {
+    header("Location: ./Login/login.php");
+    exit();
+}
+
+// SOLO ADMINISTRADOR
+if ($_SESSION['rol'] !== 'Administrador') {
+    echo "<script>alert('Acceso denegado. Solo Administradores.');window.location='../Login/login.php';</script>";
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -26,13 +39,13 @@ $avances_financieros = $conexion->query("SELECT COUNT(*) AS total FROM avance_fi
 
     <!-- MENÚ LATERAL -->
     <div class="menu">
-        <a href="ListaUsuario.php">Usuarios</a>
-        <a href="obras_lista.php">Obras</a>
-        <a href="informes_lista.php">Informes</a>
-        <a href="avances_fisicos_lista.php">Avances Físicos</a>
-        <a href="avances_financieros_lista.php">Avances Financieros</a>
-        <a href="documentos_lista.php">Documentos</a>
-        <a href="auditoria_lista.php">Auditoría</a>
+        <a href="./index.php">Menú Principal</a>
+        <a href="./Usuario/ListaUsuario.php">Usuarios</a>
+        <a href="./Obras/ListaObra.php">Obras</a>
+        <a href="./Informes/ListaInforme.php">Informes</a>
+        <a href="./AvancesFisicos/ListaFisico.php">Avances Físicos</a>
+        <a href="./AvancesFinancieros/ListaFinanciero.php">Avances Financieros</a>
+        <a href="./Documentos/ListaDocumentos.php">Documentos</a>
     </div>
 
     <!-- CONTENIDO PRINCIPAL -->
@@ -43,33 +56,39 @@ $avances_financieros = $conexion->query("SELECT COUNT(*) AS total FROM avance_fi
 
         <div class="cards">
 
-            <a class="card" href="./UListaUsuario.php">
+            <a class="card" href="./Usuario/ListaUsuario.php">
                 <h3>Usuarios</h3>
                 <p><?php echo $usuarios; ?></p>
             </a>
 
-            <a class="card" href="obras_lista.php">
+            <a class="card" href="./Obras/ListaObra.php">
                 <h3>Obras</h3>
                 <p><?php echo $obras; ?></p>
             </a>
 
-            <a class="card" href="informes_lista.php">
+            <a class="card" href="./Informes/ListaInforme.php">
                 <h3>Informes</h3>
                 <p><?php echo $informes; ?></p>
             </a>
 
-            <a class="card" href="avances_fisicos_lista.php">
+            <a class="card" href="./AvancesFisicos/ListaFisico.php">
                 <h3>Avances Físicos</h3>
                 <p><?php echo $avances_fisicos; ?></p>
             </a>
 
-            <a class="card" href="avances_financieros_lista.php">
+            <a class="card" href="./AvancesFinancieros/ListaFinanciero.php">
                 <h3>Avances Financieros</h3>
                 <p><?php echo $avances_financieros; ?></p>
             </a>
 
-        </div>
+            <a class="card" href="./Documentos/ListaDocumentos.php">
+                <h3>Documentación</h3>
+                <p><?php echo $documento; ?></p>
+            </a>
 
+        </div>
+        <!-- <br>
+        <a href="./Excel_informe/ExportarExcelObras.php" class="new-user-btn">Descargar Reporte Excel</a> -->
     </div>
 
 </div>

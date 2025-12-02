@@ -1,5 +1,5 @@
 <?php
-include "conexion.php";
+include "../Conexion/conexion.php";
 
 $id = $_POST['id_avance'];
 $act = $_POST['actividad'];
@@ -12,5 +12,5 @@ $conexion->query("UPDATE avance_fisico SET
     observaciones='$obs'
     WHERE id_avance=$id");
 
-header("Location: avances_fisicos_lista.php");
+header("Location: ListaFisico.php");
 ?>

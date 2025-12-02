@@ -1,0 +1,183 @@
+/* ======= GENERAL ======== */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #eef1f5;
+}
+
+/* ======= HEADER ======== */
+.header {
+    background: #0d47a1;
+    padding: 18px;
+    color: white;
+    text-align: center;
+    font-size: 26px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.20);
+}
+
+/* ======= LAYOUT ======== */
+.container {
+    display: flex;
+    height: calc(100vh - 60px);
+}
+
+/* ======= MENÚ LATERAL ======== */
+.menu {
+    width: 230px;
+    background: #ffffff;
+    border-right: 1px solid #dcdcdc;
+    padding-top: 20px;
+    box-shadow: 2px 0 4px rgba(0,0,0,0.05);
+}
+
+.menu a {
+    display: block;
+    padding: 14px 22px;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.menu a:hover {
+    background: #e3f2fd;
+    color: #0d47a1;
+}
+
+/* ======= CONTENIDO PRINCIPAL ======== */
+.main-container {
+    flex: 1;
+    padding: 35px;
+}
+
+/* ======= BOTÓN NUEVO USUARIO ======== */
+.new-user-btn {
+    display: inline-block;
+    background: #1e88e5;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.new-user-btn:hover {
+    background: #0d47a1;
+    transform: translateY(-2px);
+}
+
+/* ======= TABLA ======== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+}
+
+th {
+    background: #0d47a1;
+    color: white;
+    padding: 14px;
+    font-size: 16px;
+    text-align: left;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
+}
+
+tr:hover td {
+    background: #e3f2fd;
+}
+
+/* ======= LINKS DE ACCIONES (editar/eliminar) ======== */
+td a {
+    color: #0d47a1;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+td a:hover {
+    text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .menu {
+        display: none;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .main-container {
+        padding: 20px;
+    }
+}
+/* ===== FORMULARIOS PROFESIONALES ===== */
+
+form {
+    background: #ffffff;
+    padding: 30px;
+    margin: 30px auto;
+    width: 100%;
+    max-width: 550px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+form input, 
+form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+form input:focus,
+form select:focus {
+    border-color: #0d47a1;
+    box-shadow: 0 0 5px rgba(13,71,161,0.3);
+    outline: none;
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 6px;
+    display: block;
+    color: #333;
+}
+
+/* Botón */
+form button {
+    width: 100%;
+    padding: 12px;
+    background: #1e88e5;
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+form button:hover {
+    background: #0d47a1;
+    transform: translateY(-2px);
+}

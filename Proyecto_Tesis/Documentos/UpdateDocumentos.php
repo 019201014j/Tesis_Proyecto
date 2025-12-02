@@ -1,5 +1,5 @@
 <?php
-include "conexion.php";
+include "../Conexion/conexion.php";
 
 $id = $_POST['id'];
 $inf = $_POST['id_informe'];
@@ -14,5 +14,5 @@ $conexion->query("UPDATE documento SET
     usuario_subida=$user
 WHERE id_documento=$id");
 
-header("Location: documentos_lista.php");
+header("Location: ListaDocumentos.php");
 ?>

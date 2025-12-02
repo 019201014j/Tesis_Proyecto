@@ -1,5 +1,5 @@
 <?php
-include "conexion.php";
+include "../Conexion/conexion.php";
 
 $id = $_POST['id_informe'];
 $mes = $_POST['mes_periodo'];
@@ -10,5 +10,5 @@ $conexion->query("UPDATE informe SET
     estado_validacion='$estado'
     WHERE id_informe=$id");
 
-header("Location: informes_lista.php");
+header("Location: ListaInforme.php");
 ?>
